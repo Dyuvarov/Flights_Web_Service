@@ -35,8 +35,8 @@ class AviasalesApplicationTests {
 	@Test
 	public void TestCorrectID() throws Exception {
 		assertThat(controller).isNotNull();
-
-		CSVReader reader = new CSVReader(new FileReader("src/main/resources/flights.csv"));
+		CSVReader reader = new CSVReader(new FileReader(getClass().getClassLoader()
+										.getResource("flights.csv").getFile()));
 		String[] line = reader.readNext();
 		while ((line = reader.readNext()) != null) {
 			this.mockMvc.perform(get("/flights/" + line[0]))
