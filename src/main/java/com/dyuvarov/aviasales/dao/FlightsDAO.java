@@ -2,6 +2,7 @@ package com.dyuvarov.aviasales.dao;
 
 import au.com.bytecode.opencsv.CSVReader;
 import com.dyuvarov.aviasales.model.Flight;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,7 +13,11 @@ import java.io.IOException;
  * provides access to flights in CSV file
  */
 public class FlightsDAO {
-    static final String filePath = "src/main/resources/flights.csv";    //file with data
+    final String filePath;    //file with data
+
+    public FlightsDAO(@Value("${filepath}") String path) {
+        filePath = path;
+    }
 
     /**
      *
